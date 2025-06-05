@@ -1,4 +1,4 @@
-// PlayerIDs
+// PlayerIDs :: !listplayers
 // 현재 게임에 있는 모든 플레이어의 playerid 오브젝트를 반환. 
 // playerid는 방마다 달라집니다. 전원 입장 후 한 번씩 실행해서 id 백업해두기. 
 on('ready', () => {
@@ -19,7 +19,7 @@ on('ready', () => {
                 players.forEach(player => {
                     let playerName = player.get('_displayname');
                     let playerID = player.id;
-                    playerListMessage += `${playerName} - ${playerID}<br>`;
+                    playerListMessage += `${playerName} : ${playerID}<br>`;
                 });
             } else {
                 playerListMessage += "No players found in this game.<br>";
