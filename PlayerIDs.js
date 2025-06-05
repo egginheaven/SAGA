@@ -1,5 +1,6 @@
 // PlayerIDs
 // 현재 게임에 있는 모든 플레이어의 playerid 오브젝트를 반환. 
+// playerid는 방마다 달라집니다. 전원 입장 후 한 번씩 실행해서 id 백업해두기. 
 on('ready', () => {
     log('PlayerIDs Script Ready. Type !listplayers (GM only).');
 
@@ -21,7 +22,7 @@ on('ready', () => {
                     playerListMessage += `${playerName} - ${playerID}<br>`;
                 });
             } else {
-                playerListMessage += "No players found in this game (this shouldn't happen if you are here!).<br>";
+                playerListMessage += "No players found in this game.<br>";
             }
 
             sendChat('System', `/w gm <div style="border:1px solid black; background-color: #f0f0f0; padding:5px;">${playerListMessage}</div>`);
