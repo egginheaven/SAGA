@@ -1,0 +1,70 @@
+<rolltemplate class="sheet-rolltemplate-attackbonus">
+    <div class="sheet-container">
+        <!-- 제목(뭐하지) -->
+        <div class="sheet-title">{{title}}</div>
+
+        <!-- 뽑은 보너스 토큰 -->
+        <div class="sheet-draws">
+            {{#allrolls}}
+                <div class="sheet-card">
+                    <img src="{{rollIcon}}" />
+                    <span>{{rollName}}</span>
+                </div>
+            {{/allrolls}}
+        </div>
+
+        <!-- 구분선 -->
+        <div class="sheet-divider"></div>
+
+        <!-- 최종 결과 -->
+        <div class="sheet-result">
+            <div class="sheet-result-text">결과</div>
+            <div class="sheet-result-final">
+                <span>{{finalName}}</span>
+            </div>
+        </div>
+    </div>
+</rolltemplate>
+
+
+### CSS
+.sheet-rolltemplate-attackbonus .sheet-container {
+    border: 2px solid #a0a0a0;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+.sheet-rolltemplate-attackbonus .sheet-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.sheet-rolltemplate-attackbonus .sheet-draws {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.sheet-rolltemplate-attackbonus .sheet-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sheet-rolltemplate-attackbonus .sheet-card img,
+.sheet-rolltemplate-attackbonus .sheet-result-final img {
+    width: 50px;
+    height: 50px;
+}
+.sheet-rolltemplate-attackbonus .sheet-card span,
+.sheet-rolltemplate-attackbonus .sheet-result-final span {
+    font-weight: bold;
+}
+.sheet-rolltemplate-attackbonus .sheet-divider {
+    border-top: 1px solid #a0a0a0;
+    margin: 5px 0;
+}
+.sheet-rolltemplate-attackbonus .sheet-result-text {
+    font-size: 0.8em;
+    color: #555;
+}
