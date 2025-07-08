@@ -2,15 +2,28 @@
     <div class="sheet-container">
         <!-- 제목(뭐하지) -->
         <div class="sheet-title">{{title}}</div>
-
-        <!-- 뽑은 보너스 토큰 -->
         <div class="sheet-draws">
-            {{#allrolls}}
-                <div class="sheet-card">
-                    <img src="{{rollIcon}}" />
-                    <span>{{rollName}}</span>
-                </div>
-            {{/allrolls}}
+
+            <!-- roll0Icon 데이터가 존재하면 첫 번째 카드를 표시 -->
+            {{#roll0Icon}}
+            <div class="sheet-card">
+                <div style="width: 50px; height: 50px; background-image: url('{{roll0Icon}}'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            </div>
+            {{/roll0Icon}}
+
+            <!-- roll1Icon 데이터가 존재하면 두 번째 카드를 표시 -->
+            {{#roll1Icon}}
+            <div class="sheet-card">
+                <div style="width: 50px; height: 50px; background-image: url('{{roll1Icon}}'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            </div>
+            {{/roll1Icon}}
+
+            <!-- roll2Icon 데이터가 존재하면 세 번째 카드를 표시 -->
+            {{#roll2Icon}}
+            <div class="sheet-card">
+                <div style="width: 50px; height: 50px; background-image: url('{{roll2Icon}}'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            </div>
+            {{/roll2Icon}}
         </div>
 
         <!-- 구분선 -->
