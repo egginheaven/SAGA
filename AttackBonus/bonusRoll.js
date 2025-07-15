@@ -3,41 +3,46 @@ const AttackBonusDeck = (() => {
     const ALLY_DECK_NAME = "아군보너스";
     const ENEMY_DECK_NAME = "적군보너스";
 
-    // 초기 카드 상태  
+    // 초기 카드 상태
+    // value가 클수록 좋은 결과  
     const CARD_DEFINITIONS = {
-        'Bonus_Bless':   { initialWeight: 0, value: 8, text: 'x2' },
+        'Bonus_Bless':   { initialWeight: 0, value: 8, text: 'x2 (축복)' },
         'Bonus_x2':      { initialWeight: 1, value: 7, text: 'x2' },
         'Bonus_+2':      { initialWeight: 1, value: 6, text: '+2' },
         'Bonus_+1':      { initialWeight: 2, value: 5, text: '+1' },
         'Bonus_+0':      { initialWeight: 5, value: 4, text: '+0' },
         'Bonus_-1':      { initialWeight: 2, value: 3, text: '-1' },
         'Bonus_-2':      { initialWeight: 1, value: 2, text: '-2' },
-        'Bonus_Curse':   { initialWeight: 0, value: 1, text: '0' }
+        'Bonus_Curse':   { initialWeight: 0, value: 1, text: '0 (저주)' }
     };
     const ENEMY_DECK_EXCLUSIONS = ['Bonus_x2']; // 얘는 에너미 초기덱에서 제외 
 
-    // --- 핵심 기능 함수들 ---
+    // 테이블을 초기 수량으로 리셋 
     const resetDeck = (tableName) => {
+        // 테이블 이름으로 불러오기 
         const table = findObjs({ _type: 'rollabletable', name: tableName })[0];
         if (!table) {
-            sendChat('System', `/w gm "${tableName}" 테이블을 찾을 수 없습니다.`);
+            sendChat('SAGA', `/w gm "${tableName}" 테이블을 찾을 수 없습니다.`);
             return;
         }
+        // 테이블에 있는 아이템 불러오기 (배열로)
         const items = findObjs({ _type: 'tableitem', _rollabletableid: table.id });
         const isEnemyDeck = tableName === ENEMY_DECK_NAME;
+
+        // 아이템 하나씩 순회 
         items.forEach(item => {
             const cardName = item.get('name');
-            const cardDef = CARD_DEFINITIONS[cardName];
+            const cardDef = CARD_DEFINITIONS[cardName]; // 아이템 이름으로 카드 정보(초기수량포함) 불러오기 
             if (cardDef) {
                 let initialWeight = cardDef.initialWeight;
                 if (isEnemyDeck && ENEMY_DECK_EXCLUSIONS.includes(cardName)) {
                     initialWeight = 0;
                 }
-                item.set({ weight: initialWeight });
+                item.set({ weight: initialWeight }); // 초기 수량으로 weight 업데이트 
             }
         });
-        log(`"${tableName}" 덱이 초기화되었습니다.`);
-        sendChat('System', `${tableName}" 덱이 초기화되었습니다.`);
+        log(`${tableName} 덱이 초기화 되었습니다.`);
+        sendChat('SAGA', `${tableName} 덱이 초기화 되었습니다.`);
     };
 
     // 카드 뽑기 
@@ -53,7 +58,7 @@ const AttackBonusDeck = (() => {
                     const item = getObj('tableitem', rolledItemId);
 
                     if (!item) {
-                        log(`AttackBonusDeck Error: Could not find tableitem with ID ${rolledItemId}`);
+                        log(`공격보너스 굴림 오류: 테이블에서 아이템 ID: ${rolledItemId}를 찾을 수 없습니다.`);
                         return;
                     }
                     
@@ -68,7 +73,7 @@ const AttackBonusDeck = (() => {
                         finalImageURL = highResURL.split('?')[0];
                     }
 
-                    log(`[DEBUG] 최종 이미지 URL: ${finalImageURL}`);
+                    // log(`[DEBUG] 최종 이미지 URL: ${finalImageURL}`);
 
                     const cardName = item.get('name');
                     const cardData = {
@@ -79,19 +84,19 @@ const AttackBonusDeck = (() => {
                     };
                     
                     if (cardName === 'Bonus_Bless' || cardName === 'Bonus_Curse') {
-                        sendChat('System', `축복/저주 카드를 뽑았습니다. 덱을 초기화합니다.`);
+                        sendChat('SAGA', `축복/저주 카드를 뽑았습니다. 덱을 초기화합니다.`);
                         resetDeck(tableName);
                     }
                     callback(cardData);
                 } else {
                     log('AttackBonusDeck Error: Could not find tableItem in the roll result.');
                     log('Received ops: ' + JSON.stringify(ops));
-                    sendChat('System', `테이블[${tableName}] 결과 분석에 실패했습니다.`);
+                    sendChat('SAGA', `테이블[${tableName}] 결과 분석에 실패했습니다.`);
                 }
             } catch (err) {
                 log("AttackBonusDeck Error: Failed to parse roll result. Error: " + err.message);
                 log('Received ops: ' + JSON.stringify(ops));
-                sendChat('System', `gm "테이블[${tableName}] 결과 분석 중 예외가 발생했습니다.`);
+                sendChat('SAGA', `gm "테이블[${tableName}] 결과 분석 중 예외가 발생했습니다.`);
             }
         }, { noarchive: true });
     };
@@ -110,14 +115,14 @@ const AttackBonusDeck = (() => {
         
         const table = findObjs({ _type: 'rollabletable', name: tableName })[0];
         if (!table) {
-             sendChat('System', `/w gm "${tableName}" 테이블을 찾을 수 없습니다.`);
+             sendChat('SAGA', `/w gm "${tableName}" 테이블을 찾을 수 없습니다.`);
              return;
         }
         const items = findObjs({ _type: 'tableitem', _rollabletableid: table.id });
         const totalWeight = items.reduce((sum, item) => sum + parseInt(item.get('weight') || 0), 0);
         
         if (totalWeight < drawCount) {
-            sendChat('System', `뽑을 카드가 부족하여 (${totalWeight}/${drawCount}) 덱을 초기화합니다.`);
+            sendChat('SAGA', `뽑을 카드가 부족하여 (${totalWeight}/${drawCount}) 덱을 초기화합니다.`);
             resetDeck(tableName);
         }
 
