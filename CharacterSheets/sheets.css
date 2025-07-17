@@ -1,0 +1,166 @@
+/* 전체 시트 기본 스타일 */
+.charsheet {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    border-bottom: 2px solid #888;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* ======== 기본 정보 섹션 레이아웃 ======== */
+.basic-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-row.single-line,
+.info-row.full-width {
+    grid-column: 1 / 3;
+}
+
+.info-row.full-width label {
+    align-self: start;
+}
+
+.hp-bar {
+    display: flex;
+    align-items: center;
+}
+.hp-bar input {
+    width: 60px !important;
+    text-align: center;
+}
+.hp-bar span {
+    margin: 0 5px;
+}
+
+/* ======== 숫자 입력창 스피너(화살표) 문제 해결 ======== */
+/* 기본적으로 스피너 숨기기 */
+.charsheet input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+.charsheet input[type="number"]::-webkit-outer-spin-button,
+.charsheet input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge, Opera */
+    margin: 0;
+}
+/* 마우스를 올리면 스피너 표시 */
+.charsheet input[type="number"]:hover {
+    -moz-appearance: number-input; /* Firefox */
+}
+.charsheet input[type="number"]:hover::-webkit-outer-spin-button,
+.charsheet input[type="number"]:hover::-webkit-inner-spin-button {
+    -webkit-appearance: auto; /* Chrome, Safari, Edge, Opera */
+}
+
+
+/* ======== 카드 목록 스타일 ======== */
+.sheet-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sheet-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sheet-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sheet-card-initial {
+    width: 60px !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sheet-card-name {
+    flex-grow: 1;
+}
+
+.sheet-card-header button {
+    flex-shrink: 0;
+    padding: 8px 12px;
+}
+
+/* 카드 효과 상세보기/숨기기 */
+.sheet-toggle-details {
+    display: none;
+}
+
+.sheet-toggle-button {
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+    user-select: none;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.sheet-card-details {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.sheet-toggle-details:checked ~ .sheet-card-details {
+    display: block;
+}
+.sheet-toggle-details:checked ~ .sheet-card-header .sheet-toggle-button {
+    transform: rotate(180deg);
+}
+
+.sheet-card-details h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.sheet-card-details textarea {
+    height: 80px;
+    resize: vertical;
+    background-color: #f0f0f0;
+}
+
+/* 보유 아이템 스타일 */
+.sheet-inventory {
+    height: 120px;
+    resize: vertical;
+}
+

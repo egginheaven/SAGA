@@ -3,15 +3,13 @@
 <!-- =================================================== -->
 <h2>기본 정보</h2>
 <div class="basic-info-grid">
-    <!-- 이름 ([DEBUG]일단 직접입력으로?) -->
-    <div>
-        <span>이름:</span>
+    <!-- 이름 역할군 ([임시]일단 직접입력으로?) -->
+    <div class="info-row">
+        <label>이름:</label>
         <input type="text" name="attr_character_name" />
     </div>
-
-    <!-- 역할군 (드롭다운) -->
-    <div>
-        <span>역할군:</span>
+    <div class="info-row">
+        <label>역할군:</label>
         <select name="attr_position">
             <option value="돌격대">돌격대</option>
             <option value="척후병">척후병</option>
@@ -20,5 +18,790 @@
         </select>
     </div>
 
-    <!-- 레벨 ([DEBUG]gm만 수정가능) -->
+    <!-- 레벨, 경험치 ([임시]gm만 수정가능) -->
+    <div class="info-row">
+        <label>레벨:</label>
+        <input type="number" name="attr_level" value="1" disabled>
+    </div>
+    <div class="info-row">
+        <label>경험치:</label>
+        <input type="number" name="attr_exp" value="0" disabled>
+    </div>
+
+    <!-- 생명력 ([임시]레벨, 포지션에 따라 최대생명력 결정) -->
+    <div class="info-row single-line">
+        <label>생명력:</label>
+        <div class="hp-bar">
+            <input type="number" name="attr_hp" value="12">
+            <span>/</span>
+            <input type="number" name="attr_hp_max" value="12" disabled>
+        </div>
+    </div>
+
+    <!-- 방어도 [임시] -->
+    <div class="info-row single-line">
+        <label>방어도:</label>
+        <input type="number" name="attr_block" value="0">
+    </div>
+    
+    <!-- [임시] 불리한 상태 및 유리한 상태. 후에 항목별로 세분화 -->
+    <div class="info-row full-width">
+        <label>상태:</label>
+        <textarea name="attr_status" placeholder="현재 캐릭터의 상태를 기록합니다."></textarea>
+    </div>
 </div>
+
+<!-- =================================================== -->
+<!--                       카드 목록                       -->
+<!-- =================================================== -->
+<h2>카드 목록</h2>
+<div class="sheet-card-list">
+    <!-- 카드 1 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card1_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card1_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card1_top" value="/em @{character_name}이(가) @{card1_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card1_bottom" value="/em @{character_name}이(가) @{card1_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card1_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card1_toggle" id="card1_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card1_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card1_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 2 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card2_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card2_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card2_top" value="/em @{character_name}이(가) @{card2_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card2_bottom" value="/em @{character_name}이(가) @{card2_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card2_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card2_toggle" id="card2_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card2_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card2_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+    
+    <!-- 카드 3 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card3_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card3_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card3_top" value="/em @{character_name}이(가) @{card3_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card3_bottom" value="/em @{character_name}이(가) @{card3_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card3_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card3_toggle" id="card3_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card3_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card3_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+    
+    <!-- 카드 4 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card4_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card4_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card4_top" value="/em @{character_name}이(가) @{card4_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card4_bottom" value="/em @{character_name}이(가) @{card4_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card4_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card4_toggle" id="card4_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card4_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card4_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 5 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card5_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card5_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card5_top" value="/em @{character_name}이(가) @{card5_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card5_bottom" value="/em @{character_name}이(가) @{card5_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card5_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card5_toggle" id="card5_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card5_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card5_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 6 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card6_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card6_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card6_top" value="/em @{character_name}이(가) @{card6_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card6_bottom" value="/em @{character_name}이(가) @{card6_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card6_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card6_toggle" id="card6_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card6_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card6_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 7 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card7_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card7_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card7_top" value="/em @{character_name}이(가) @{card7_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card7_bottom" value="/em @{character_name}이(가) @{card7_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card7_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card7_toggle" id="card7_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card7_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card7_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 8 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card8_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card8_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card8_top" value="/em @{character_name}이(가) @{card8_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card8_bottom" value="/em @{character_name}이(가) @{card8_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card8_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card8_toggle" id="card8_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card8_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card8_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 9 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card9_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card9_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card9_top" value="/em @{character_name}이(가) @{card9_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card9_bottom" value="/em @{character_name}이(가) @{card9_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card9_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card9_toggle" id="card9_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card9_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card9_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+
+    <!-- 카드 10 -->
+    <div class="sheet-card">
+        <div class="sheet-card-header">
+            <input type="number" name="attr_card10_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+            <input type="text" name="attr_card10_name" class="sheet-card-name" placeholder="카드명 입력">
+            <button type="roll" name="roll_card10_top" value="/em @{character_name}이(가) @{card10_name}의 상단 행동을 사용합니다.">상단</button>
+            <button type="roll" name="roll_card10_bottom" value="/em @{character_name}이(가) @{card10_name}의 하단 행동을 사용합니다.">하단</button>
+
+            <!-- 상세보기 토글 -->
+             <label for="card10_toggle" class="sheet-toggle-button">▼</label>
+        </div>
+        <input type="checkbox" name="attr_card10_toggle" id="card10_toggle" class="sheet-toggle-details">
+        <div class="sheet-card-details">
+            <h4>상단 행동</h4>
+            <textarea name="attr_card10_top_effect" placeholder="상단 행동 설명"></textarea>
+            <h4>하단 행동</h4>
+            <textarea name="attr_card10_bottom_effect" placeholder="하단 행동 설명"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<!-- =================================================== -->
+<!--                    (임시)아이템 목록                    -->
+<!-- =================================================== -->
+<h2>보유 아이템</h2>
+<textarea name="attr_inventory" class="sheet-inventory" placeholder="보유 중인 아이템 목록을 기록합니다."></textarea>
+
+<!-- =================================================== -->
+<!--                 카드 자동 완성 스크립트                   -->
+<!-- =================================================== -->
+
+<script type="text/worker">
+    // 카드 데이터베이스
+    const cardDatabase = {
+        "생명의물": {
+            initial: 50,
+            top_effect: "치유 5 (자신)",
+            bottom_effect: "치유 5 (자신)"
+        },
+        "용맹한방패": {
+            initial: 97,
+            top_effect: "공격 2 (사거리 1)\n방어 3 (자신)",
+            bottom_effect: "치유 2 (사거리 1)"
+        },
+        "우레의함성": {
+            initial: 87,
+            top_effect: "공격 4 (사거리 1, 기절)\n소실",
+            bottom_effect: "방어 3 (자신)"
+        },
+        "사기진작": {
+            initial: 64,
+            top_effect: "루팅 1",
+            bottom_effect: "이동 4\n방어 2 (자신)"
+        },
+        "정의집행": {
+            initial: 63,
+            top_effect: "공격 3 (사거리 1, 강제이동 2)",
+            bottom_effect: "방어 1 (자신)\n축복 1"
+        },
+        "대지분쇄": {
+            initial: 54,
+            top_effect: "공격 6 (사거리 1)\n소실",
+            bottom_effect: "이동 3\n강제이동 2 (사거리 1)"
+        },
+        "도끼던지기": {
+            initial: 37,
+            top_effect: "공격 3 (사거리 3)",
+            bottom_effect: "공격 2 (사거리 1)"
+        },
+        "전방위돌격": {
+            initial: 35,
+            top_effect: "공격 2 (광역, 특수사거리)",
+            bottom_effect: "이동 3\n강제이동 1 (광역, 사거리 1)"
+        },
+        "내려찍기": {
+            initial: 23,
+            top_effect: "공격 3 (광역, 특수사거리)",
+            bottom_effect: "도약 3"
+        },
+        "수호자": {
+            initial: 92,
+            top_effect: "공격 2 (사거리 1, 무장해제)",
+            bottom_effect: "이번 라운드 중 인접한 아군이 공격 대상으로 지정되었을 경우, 자신이 대신 공격 대상이 된다."
+        },
+        "심장찌르기": {
+            initial: 28,
+            top_effect: "공격 3 (사거리 1, 관통)",
+            bottom_effect: "도약 4\n공격 2 (이동 경로에 인접한 모든 적 대상)\n소실"
+        },
+        "금강불괴": {
+            initial: 79,
+            top_effect: "이동 2\n공격 2 (사거리 1)",
+            bottom_effect: "방어 8 (자신)\n소실"
+        },
+        "반격태세": {
+            initial: 71,
+            top_effect: "방어 3 (자신)\n공격 3 (사거리 1)",
+            bottom_effect: "이번 라운드 중 자신의 모든 공격에 공격 +1 추가"
+        },
+        "깃발꽂기": {
+            initial: 66,
+            top_effect: "공격 2 (광역, 특수사거리, 무장해제)",
+            bottom_effect: "이동 2\n방어 2 (자신)"
+        },
+        "야수의화신": {
+            initial: 47,
+            top_effect: "공격 5 (사거리 1)",
+            bottom_effect: "이동 4\n기절 (광역, 사거리 1)\n소실"
+        },
+        "방패휘두르기": {
+            initial: 43,
+            top_effect: "공격 X (사거리 1, X: 현재 자신의 방어도)",
+            bottom_effect: "도약 6\n소실"
+        },
+        "선전포고": {
+            initial: 81,
+            top_effect: "방어 3 (자신)\n공격 2 (사거리 2)",
+            bottom_effect: "공격 3 (사거리 1)"
+        },
+        "압도하는패기": {
+            initial: 51,
+            top_effect: "공격 3 (사거리 3, 강제이동 2)",
+            bottom_effect: "이동 4\n공격 2 (사거리 1)"
+        },
+        "회전베기": {
+            initial: 45,
+            top_effect: "공격 4 (광역, 사거리 1)\n소실",
+            bottom_effect: "이동 4\n강제이동 3 (사거리 1)"
+        },
+        "진두지휘": {
+            initial: 30,
+            top_effect: "공격 X (사거리 1, X: 이번 차례 중 이동한 마스 수)",
+            bottom_effect: "이동 X (X: 이번 차례 중 지금까지 입힌 피해)"
+        },
+        "두개골분쇄": {
+            initial: 5,
+            top_effect: "공격 8 (사거리 1)\n소실",
+            bottom_effect: "루팅 1"
+        },
+        "철벽의맹세": {
+            initial: 86,
+            top_effect: "공격 3 (사거리 3, 속박)",
+            bottom_effect: "방어 4 (자신)"
+        },
+        "맹수의발톱": {
+            initial: 61,
+            top_effect: "공격 6 (사거리 1, 기절)\n소실",
+            bottom_effect: "이동 3\n방어 2 (자신)"
+        },
+        "불굴의의지": {
+            initial: 55,
+            top_effect: "공격 6 (광역, 사거리 1)\n강제이동 2 (사거리 1)\n소실",
+            bottom_effect: "치유 5 (자신)"
+        },
+        "광폭화": {
+            initial: 38,
+            top_effect: "공격 2 (대상 2, 사거리 4)\n강제이동 3 (사거리 4)",
+            bottom_effect: "공격 6 (사거리 1)\n소실"
+        },
+        "섬광연격": {
+            initial: 9,
+            top_effect: "공격 2 (사거리 1)\n이동 2\n공격 2 (사거리 1)",
+            bottom_effect: "공격 3 (사거리 3)"
+        },
+        "신중한판단": {
+            initial: 73,
+            top_effect: "방어 2 (자신)\n공격 2 (사거리 4)",
+            bottom_effect: "이동 3\n방어 1 (자신)"
+        },
+        "조준사격": {
+            initial: 72,
+            top_effect: "이동 1\n공격 3 (사거리 3)",
+            bottom_effect: "이동 2\n무장해제 (사거리 3)"
+        },
+        "몰이사냥": {
+            initial: 62,
+            top_effect: "공격 2 (광역, 특수사거리, 무장해제)",
+            bottom_effect: "공격 2 (사거리 2)"
+        },
+        "빗발치는화살": {
+            initial: 33,
+            top_effect: "공격 3 (대상 3, 사거리 4)\n소실",
+            bottom_effect: "이동 3"
+        },
+        "명사수": {
+            initial: 26,
+            top_effect: "공격 3 (사거리 4, 관통)",
+            bottom_effect: "이동 3"
+        },
+        "정밀타격": {
+            initial: 18,
+            top_effect: "증강 (자신)\n공격 3 (사거리 3)",
+            bottom_effect: "이동 4"
+        },
+        "도움닫기": {
+            initial: 13,
+            top_effect: "루팅 1",
+            bottom_effect: "도약 8\n소실"
+        },
+        "주문영창": {
+            initial: 34,
+            top_effect: "공격 3 (광역, 특수사거리)\n저주 1",
+            bottom_effect: "치유 4 (사거리 1)"
+        },
+        "정신집중": {
+            initial: 1,
+            top_effect: "재생 (자신)\n소실",
+            bottom_effect: "도약 4"
+        },
+        "텔레포트": {
+            initial: 91,
+            top_effect: "공격 3 (대상 2, 사거리 3)",
+            bottom_effect: "사거리 3 이내의 적군 1체와 위치 교환 (자신의 생명력 -2)"
+        },
+        "마력보호막": {
+            initial: 95,
+            top_effect: "방어 4 (사거리 2)",
+            bottom_effect: "치유 3 (사거리 1)\n축복 1"
+        },
+        "냉기의속박": {
+            initial: 67,
+            top_effect: "공격 4 (광역, 특수사거리, 속박)\n소실",
+            bottom_effect: "이동 3\n방어 2 (자신)"
+        },
+        "맹독화살": {
+            initial: 56,
+            top_effect: "취약 (대상 2, 사거리 2)",
+            bottom_effect: "이동 1\n공격 2 (사거리 3)"
+        },
+        "회오리바람": {
+            initial: 22,
+            top_effect: "공격 2 (광역, 사거리 1, 관통)",
+            bottom_effect: "루팅 1"
+        },
+        "전격마법": {
+            initial: 15,
+            top_effect: "공격 3 (대상 3, 사거리 3)",
+            bottom_effect: "이동 3"
+        },
+        "과열마찰": {
+            initial: 89,
+            top_effect: "증강 (광역, 사거리 1)",
+            bottom_effect: "이번 라운드 중 자신의 모든 공격에 공격 +2 추가\n소실"
+        },
+        "매의눈": {
+            initial: 58,
+            top_effect: "공격 1 (사거리 3)\n기절 (생명력이 최대치인 대상, 사거리 3)",
+            bottom_effect: "비행 3"
+        },
+        "화망": {
+            initial: 39,
+            top_effect: "공격 3 (광역, 특수사거리, 무장해제)",
+            bottom_effect: "루팅 1"
+        },
+        "노련한사냥꾼": {
+            initial: 16,
+            top_effect: "공격 4 (대상 2, 사거리 3)",
+            bottom_effect: "도약 3"
+        },
+        "연쇄폭발": {
+            initial: 11,
+            top_effect: "공격 2 (사거리 3, 관통)\n공격 2 (사거리 3, 관통)",
+            bottom_effect: "이동 4"
+        },
+        "일점사": {
+            initial: 60,
+            top_effect: "공격 6 (사거리 5, 관통)\n소실",
+            bottom_effect: "이동 2\n방어 2 (사거리 1)"
+        },
+        "확인사살": {
+            initial: 42,
+            top_effect: "이동 2\n공격 3 (사거리 2)\n루팅 1",
+            bottom_effect: "이동 3\n치유 4 (자신)"
+        },
+        "초신성": {
+            initial: 24,
+            top_effect: "공격 5 (광역, 특수사거리)\n소실",
+            bottom_effect: "공격 2 (대상 2, 사거리 3)"
+        },
+        "무차별폭격": {
+            initial: 7,
+            top_effect: "공격 3 (광역, 사거리 4)\n사정거리 내 아군의 생명력 -3",
+            bottom_effect: "강제이동 2 (사거리 4)"
+        },
+        "낙뢰": {
+            initial: 6,
+            top_effect: "취약 (사거리 6)\n공격 6 (사거리 6)",
+            bottom_effect: "이동 3\n증강 (자신)"
+        },
+        "긴급탈출": {
+            initial: 99,
+            top_effect: "비행 5\n소실",
+            bottom_effect: "이동 2\n치유 1 (광역, 사거리 1)"
+        },
+        "재빠른발": {
+            initial: 94,
+            top_effect: "공격 2 (사거리 3, 무장해제)",
+            bottom_effect: "이동 3\n저주 1"
+        },
+        "장난스러운손": {
+            initial: 85,
+            top_effect: "공격 2 (광역, 특수사거리, 관통)",
+            bottom_effect: "취약 (광역, 사거리 3)\n소실"
+        },
+        "독액살포": {
+            initial: 57,
+            top_effect: "공격 1 (광역, 사거리 1, 취약, 자신에게 취약 부여)",
+            bottom_effect: "이동 3"
+        },
+        "위기감지": {
+            initial: 52,
+            top_effect: "공격 1 (사거리 3, 기절)\n소실",
+            bottom_effect: "이동 4"
+        },
+        "날개달린신발": {
+            initial: 41,
+            top_effect: "루팅 1",
+            bottom_effect: "비행 3"
+        },
+        "행운의부적": {
+            initial: 32,
+            top_effect: "공격 3 (사거리 3, 저주 1)",
+            bottom_effect: "루팅 3\n소실"
+        },
+        "향상된도약": {
+            initial: 29,
+            top_effect: "공격 2 (대상 2, 사거리 3)",
+            bottom_effect: "도약 5"
+        },
+        "부비트랩": {
+            initial: 20,
+            top_effect: "공격 1 (대상 4, 사거리 3)",
+            bottom_effect: "이동 6"
+        },
+        "개척자의시야": {
+            initial: 48,
+            top_effect: "무장해제 (광역, 사거리 2)",
+            bottom_effect: "이동 3\n인접한 장애물 및 함정 1개 파괴\n파괴에 성공했다면 다음을 수행한다:\n공격 2 (광역, 사거리 1)"
+        },
+        "기척감추기": {
+            initial: 77,
+            top_effect: "방어 6 (자신)\n소실",
+            bottom_effect: "이동 4\n속박 (사거리 2)"
+        },
+        "흔적읽기": {
+            initial: 74,
+            top_effect: "이동 3\n공격 2 (사거리 1)",
+            bottom_effect: "이동 2\n증강 (사거리 1)"
+        },
+        "열쇠공": {
+            initial: 50,
+            top_effect: "공격 2 (사거리 4, 강제이동 1)",
+            bottom_effect: "이동 3\n이동 중 문을 열었다면 다음을 수행한다\n기절 (광역, 사거리 3)\n소실"
+        },
+        "침묵의장막": {
+            initial: 44,
+            top_effect: "공격 3 (대상 2, 사거리 3, 무장해제)",
+            bottom_effect: "무장해제 (광역, 사거리 1)"
+        },
+        "시야훼방": {
+            initial: 25,
+            top_effect: "공격 3 (사거리 3)\n저주 1",
+            bottom_effect: "이동 3\n저주 1"
+        },
+        "둔화저주": {
+            initial: 83,
+            top_effect: "공격 1 (사거리 2)\n공격 1 (사거리 2, 저주 2)",
+            bottom_effect: "이동 3\n속박 (사거리 3)"
+        },
+        "길라잡이": {
+            initial: 80,
+            top_effect: "인접한 장애물 및 함정 1개 파괴\n기절 (사거리 1)\n소실",
+            bottom_effect: "이동 1\n루팅 2"
+        },
+        "운명재설계": {
+            initial: 68,
+            top_effect: "축복 1\n공격 2 (대상 2, 사거리 2, 취약)",
+            bottom_effect: "루팅 1\n비행 2\n루팅 1"
+        },
+        "상처찌르기": {
+            initial: 8,
+            top_effect: "취약 상태인 적의 생명력 -10 (사거리 5)\n소실",
+            bottom_effect: "치유 2 (대상2, 사거리 3)"
+        },
+        "불운확산": {
+            initial: 4,
+            top_effect: "적 하나의 취약 상태를 해제하고 해당 적의 생명력 -3 (사거리 6)",
+            bottom_effect: "취약 (현재 취약 상태인 적에게 인접한 모든 적 대상)"
+        },
+        "전광석화": {
+            initial: 93,
+            top_effect: "공격 3 (사거리 3, 관통)",
+            bottom_effect: "이동 2 \n장애물 및 함정 파괴 (이동 경로에 인접한 모든 대상)"
+        },
+        "사슬묶기": {
+            initial: 76,
+            top_effect: "공격 4 (사거리 1, 강제이동 2, 속박)",
+            bottom_effect: "도약 3\n인접한 장애물 및 함정 1개 파괴"
+        },
+        "흩뿌리는칼날": {
+            initial: 36,
+            top_effect: "공격 6 (대상 2, 사거리 1)\n소실",
+            bottom_effect: "도약 5"
+        },
+        "그림자일격": {
+            initial: 27,
+            top_effect: "공격 4 (광역, 사거리 2, 사거리 내의 모든 장애물 및 함정 파괴)\n소실",
+            bottom_effect: "이동 3\n공격 2 (사거리 1)"
+        },
+        "급소겨냥": {
+            initial: 10,
+            top_effect: "이동 2\n취약 (대상 2, 사거리 1)",
+            bottom_effect: "이번 라운드 중 자신의 모든 공격에 취약 추가 (자신의 생명력 -3)"
+        },
+        "용맹의협주곡": {
+            initial: 98,
+            top_effect: "축복 2",
+            bottom_effect: "이동 2\n증강 (광역, 사거리 1)"
+        },
+        "천상의보호막": {
+            initial: 88,
+            top_effect: "방어 5 (사거리 3)\n소실",
+            bottom_effect: "이동 3"
+        },
+        "폭발씨앗": {
+            initial: 82,
+            top_effect: "공격 3 (사거리 3, 취약)",
+            bottom_effect: "루팅 1"
+        },
+        "오래된자장가": {
+            initial: 78,
+            top_effect: "무장해제 (광역, 특수사거리)",
+            bottom_effect: "이동 4"
+        },
+        "녹음의징표": {
+            initial: 69,
+            top_effect: "방어 2 (사거리 3, 증강)",
+            bottom_effect: "이동 2\n치유 4 (사거리 2)"
+        },
+        "선조의보호": {
+            initial: 65,
+            top_effect: "치유 5 (사거리 1)",
+            bottom_effect: "방어 2 (사거리 2)"
+        },
+        "빛이있으라": {
+            initial: 31,
+            top_effect: "공격 2 (대상 2, 사거리 3)\n축복 1",
+            bottom_effect: "이동 2\n저주 1"
+        },
+        "전장의노래": {
+            initial: 21,
+            top_effect: "치유 3 (사거리 3)",
+            bottom_effect: "재생 (사거리 1)\n소실"
+        },
+        "성휘": {
+            initial: 19,
+            top_effect: "치유 4 (사거리 2)",
+            bottom_effect: "축복 1\n치유 2 (사거리 2)"
+        },
+        "피어나는생명": {
+            initial: 12,
+            top_effect: "치유 4 (광역, 특수사거리)",
+            bottom_effect: "이동 3\n축복 1"
+        },
+        "대지의분노": {
+            initial: 75,
+            top_effect: "공격 3 (사거리 3, 취약)",
+            bottom_effect: "치유 3 (사거리 3)\n저주 1"
+        },
+        "불사의염원": {
+            initial: 70,
+            top_effect: "치유 9 (사거리 3)\n소실",
+            bottom_effect: "방어 3 (사거리 2)"
+        },
+        "군신의찬가": {
+            initial: 53,
+            top_effect: "다음 1회 대상의 공격에 공격 +2 (사거리 1)",
+            bottom_effect: "이동 2\n공격 2 (사거리 3)"
+        },
+        "생명의그릇": {
+            initial: 49,
+            top_effect: "인접한 아군 1명의 핸드에 '생명의 물' 능력 카드 추가",
+            bottom_effect: "이동 4"
+        },
+        "가시덩굴": {
+            initial: 17,
+            top_effect: "공격 2 (대상 2, 사거리 3, 관통)",
+            bottom_effect: "이동 2\n속박 (사거리 3)"
+        },
+        "성수": {
+            initial: 96,
+            top_effect: "증강 (광역, 사거리 2)",
+            bottom_effect: "이동 5"
+        },
+        "생명의영약": {
+            initial: 90,
+            top_effect: "루팅 1\n치유 2 (광역, 사거리 2)",
+            bottom_effect: "인접한 아군 1명의 핸드에 '생명의 물' 능력 카드 추가"
+        },
+        "빛의심판": {
+            initial: 46,
+            top_effect: "공격 6 (사거리 3)\n소실",
+            bottom_effect: "축복 1\n증강 (사거리 3)"
+        },
+        "신속의고동": {
+            initial: 40,
+            top_effect: "인접한 아군 1명은 이동 3 수행",
+            bottom_effect: "해당 라운드 인접한 아군 1명의 이동 N을 비행 N으로 변경"
+        },
+        "신성불가침": {
+            initial: 3,
+            top_effect: "공격 4 (사거리 2)",
+            bottom_effect: "이번 라운드 중 자신의 모든 치유 행동 대상을 광역으로 변경\n소실"
+        },
+        "세계수의축복": {
+            initial: 84,
+            top_effect: "증강 (사거리 2)\n공격 3 (사거리 3)",
+            bottom_effect: "기절 (사거리 1)"
+        },
+        "모험의서곡": {
+            initial: 59,
+            top_effect: "공격 2 (광역, 특수사거리, 취약)",
+            bottom_effect: "비행 3"
+        },
+        "공명하는마음": {
+            initial: 14,
+            top_effect: "치유 4 (광역, 특수사거리, 증강)\n소실",
+            bottom_effect: "공격 3 (사거리 5)"
+        },
+        "여신의은혜": {
+            initial: 2,
+            top_effect: "축복 X (X : 사거리 2 이내 아군 수)\n저주 X (X : 사거리 2 이내 적군 수)\n소실",
+            bottom_effect: "이동 3\n치유 3 (사거리 2)"
+        },
+        "현자의돌": {
+            initial: 0,
+            top_effect: "재생 (사거리 2)\n소실",
+            bottom_effect: "치유 5 (사거리 2)"
+        }
+    };
+    const numberOfCards = 10;
+    const cardNameAttributes = Array.from({length: numberOfCards}, (_,i) => `card${i + 1}_name`)
+
+    cardNameAttributes.forEach(attrName => {
+        on(`change:${attrName}`, (eventInfo) => {
+            const inputCardName = (eventInfo.newValue || "").trim().replace(/\s/g, "");
+            
+            const cardNum = attrName.match(/card(\d+)_name/)[1];
+            
+            const cardData = cardDatabase[inputCardName];
+            const attrsToSet = {};
+
+            if (cardData) {
+                // 데이터베이스에 카드가 존재 -> 속성 생성하고 저장 
+                attrsToSet[`card${cardNum}_initial`] = cardData.initial;
+                attrsToSet[`card${cardNum}_top_effect`] = cardData.top_effect;
+                attrsToSet[`card${cardNum}_bottom_effect`] = cardData.bottom_effect;
+            } else {
+                // 존재하지 않는 카드 
+                attrsToSet[`card${cardNum}_initial`] = '';
+                attrsToSet[`card${cardNum}_top_effect`] = '';
+                attrsToSet[`card${cardNum}_bottom_effect`] = '';
+            }
+            
+            setAttrs(attrsToSet);
+        });
+    });
+</script>
