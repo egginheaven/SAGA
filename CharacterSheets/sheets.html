@@ -1,269 +1,274 @@
+<!-- 포지션 체크용 -->
+	<input type="hidden" class="sheet-check-position" 
+	name="attr_character_postion" value="">
+
 <!-- =================================================== -->
 <!--                       캐릭터 정보                      -->
 <!-- =================================================== -->
-<h2>기본 정보</h2>
-<div class="basic-info-grid">
-    <!-- 이름 역할군 ([임시]일단 직접입력으로?) -->
-    <div class="info-row">
-        <label>이름:</label>
-        <input type="text" name="attr_character_name" />
-    </div>
-    <div class="info-row">
-        <label>역할군:</label>
-        <select name="attr_position">
-            <option value="돌격대">돌격대</option>
-            <option value="척후병">척후병</option>
-            <option value="교란자">교란자</option>
-            <option value="치유사">치유사</option>
-        </select>
-    </div>
-
-    <!-- 레벨, 경험치 ([임시]gm만 수정가능) -->
-    <div class="info-row">
-        <label>레벨:</label>
-        <input type="number" name="attr_level" value="1" disabled>
-    </div>
-    <div class="info-row">
-        <label>경험치:</label>
-        <input type="number" name="attr_exp" value="0" disabled>
-    </div>
-
-    <!-- 생명력 ([임시]레벨, 포지션에 따라 최대생명력 결정) -->
-    <div class="info-row single-line">
-        <label>생명력:</label>
-        <div class="hp-bar">
-            <input type="number" name="attr_hp" value="12">
-            <span>/</span>
-            <input type="number" name="attr_hp_max" value="12" disabled>
-        </div>
-    </div>
-
-    <!-- 방어도 [임시] -->
-    <div class="info-row single-line">
-        <label>방어도:</label>
-        <input type="number" name="attr_block" value="0">
-    </div>
-    
-    <!-- [임시] 불리한 상태 및 유리한 상태. 후에 항목별로 세분화 -->
-    <div class="info-row full-width">
-        <label>상태:</label>
-        <textarea name="attr_status" placeholder="현재 캐릭터의 상태를 기록합니다."></textarea>
-    </div>
+<div class="sheet-wrap">
+	<h2>기본 정보</h2>
+	<div class="basic-info-grid">
+		<!-- 이름 역할군 ([임시]일단 직접입력으로?) -->
+		<div class="info-row">
+			<label>이름:</label>
+			<input type="text" name="attr_character_name" />
+		</div>
+		<div class="info-row">
+			<label>역할군:</label>
+			<select name="attr_position">
+				<option value="돌격대">돌격대</option>
+				<option value="척후병">척후병</option>
+				<option value="교란자">교란자</option>
+				<option value="치유사">치유사</option>
+			</select>
+		</div>
+	
+		<!-- 레벨, 경험치 ([임시]gm만 수정가능) -->
+		<div class="info-row">
+			<label>레벨:</label>
+			<input type="number" name="attr_level" value="1" disabled>
+		</div>
+		<div class="info-row">
+			<label>경험치:</label>
+			<input type="number" name="attr_exp" value="0" disabled>
+		</div>
+	
+		<!-- 생명력 ([임시]레벨, 포지션에 따라 최대생명력 결정) -->
+		<div class="info-row single-line">
+			<label>생명력:</label>
+			<div class="hp-bar">
+				<input type="number" name="attr_hp" value="12">
+				<span id="disabled-text">/</span>
+				<input type="number" name="attr_hp_max" value="12" disabled id="disabled-text">
+			</div>
+		</div>
+	
+		<!-- 방어도 [임시] -->
+		<div class="info-row single-line">
+			<label>방어도:</label>
+			<input type="number" name="attr_block" value="0">
+		</div>
+		
+		<!-- [임시] 불리한 상태 및 유리한 상태. 후에 항목별로 세분화 -->
+		<div class="info-row full-width">
+			<label>상태:</label>
+			<textarea name="attr_status" placeholder="현재 캐릭터의 상태를 기록합니다."></textarea>
+		</div>
+	</div>
+	
+	<!-- =================================================== -->
+	<!--                       카드 목록                       -->
+	<!-- =================================================== -->
+	<h2>카드 목록</h2>
+	<div class="sheet-card-list">
+		<!-- 카드 1 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card1_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card1_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card1_top" value="/em @{character_name}이(가) @{card1_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card1_bottom" value="/em @{character_name}이(가) @{card1_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card1_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card1_toggle" id="card1_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card1_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card1_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 2 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card2_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card2_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card2_top" value="/em @{character_name}이(가) @{card2_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card2_bottom" value="/em @{character_name}이(가) @{card2_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card2_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card2_toggle" id="card2_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card2_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card2_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+		
+		<!-- 카드 3 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card3_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card3_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card3_top" value="/em @{character_name}이(가) @{card3_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card3_bottom" value="/em @{character_name}이(가) @{card3_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card3_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card3_toggle" id="card3_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card3_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card3_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+		
+		<!-- 카드 4 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card4_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card4_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card4_top" value="/em @{character_name}이(가) @{card4_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card4_bottom" value="/em @{character_name}이(가) @{card4_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card4_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card4_toggle" id="card4_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card4_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card4_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 5 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card5_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card5_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card5_top" value="/em @{character_name}이(가) @{card5_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card5_bottom" value="/em @{character_name}이(가) @{card5_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card5_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card5_toggle" id="card5_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card5_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card5_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 6 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card6_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card6_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card6_top" value="/em @{character_name}이(가) @{card6_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card6_bottom" value="/em @{character_name}이(가) @{card6_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card6_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card6_toggle" id="card6_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card6_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card6_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 7 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card7_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card7_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card7_top" value="/em @{character_name}이(가) @{card7_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card7_bottom" value="/em @{character_name}이(가) @{card7_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card7_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card7_toggle" id="card7_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card7_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card7_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 8 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card8_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card8_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card8_top" value="/em @{character_name}이(가) @{card8_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card8_bottom" value="/em @{character_name}이(가) @{card8_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card8_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card8_toggle" id="card8_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card8_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card8_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 9 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card9_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card9_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card9_top" value="/em @{character_name}이(가) @{card9_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card9_bottom" value="/em @{character_name}이(가) @{card9_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card9_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card9_toggle" id="card9_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card9_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card9_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	
+		<!-- 카드 10 -->
+		<div class="sheet-card">
+			<div class="sheet-card-header">
+				<input type="number" name="attr_card10_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
+				<input type="text" name="attr_card10_name" class="sheet-card-name" placeholder="카드명 입력">
+				<button type="roll" name="roll_card10_top" value="/em @{character_name}이(가) @{card10_name}의 상단 행동을 사용합니다.">상단</button>
+				<button type="roll" name="roll_card10_bottom" value="/em @{character_name}이(가) @{card10_name}의 하단 행동을 사용합니다.">하단</button>
+	
+				<!-- 상세보기 토글 -->
+				<label for="card10_toggle" class="sheet-toggle-button">▼</label>
+			</div>
+			<input type="checkbox" name="attr_card10_toggle" id="card10_toggle" class="sheet-toggle-details">
+			<div class="sheet-card-details">
+				<h4>상단 행동</h4>
+				<textarea name="attr_card10_top_effect" placeholder="상단 행동 설명"></textarea>
+				<h4>하단 행동</h4>
+				<textarea name="attr_card10_bottom_effect" placeholder="하단 행동 설명"></textarea>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- =================================================== -->
+	<!--                    (임시)아이템 목록                    -->
+	<!-- =================================================== -->
+	<h2>보유 아이템</h2>
+	<textarea name="attr_inventory" class="sheet-inventory" placeholder="보유 중인 아이템 목록을 기록합니다."></textarea>
 </div>
-
-<!-- =================================================== -->
-<!--                       카드 목록                       -->
-<!-- =================================================== -->
-<h2>카드 목록</h2>
-<div class="sheet-card-list">
-    <!-- 카드 1 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card1_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card1_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card1_top" value="/em @{character_name}이(가) @{card1_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card1_bottom" value="/em @{character_name}이(가) @{card1_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card1_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card1_toggle" id="card1_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card1_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card1_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 2 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card2_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card2_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card2_top" value="/em @{character_name}이(가) @{card2_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card2_bottom" value="/em @{character_name}이(가) @{card2_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card2_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card2_toggle" id="card2_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card2_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card2_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-    
-    <!-- 카드 3 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card3_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card3_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card3_top" value="/em @{character_name}이(가) @{card3_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card3_bottom" value="/em @{character_name}이(가) @{card3_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card3_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card3_toggle" id="card3_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card3_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card3_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-    
-    <!-- 카드 4 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card4_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card4_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card4_top" value="/em @{character_name}이(가) @{card4_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card4_bottom" value="/em @{character_name}이(가) @{card4_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card4_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card4_toggle" id="card4_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card4_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card4_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 5 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card5_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card5_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card5_top" value="/em @{character_name}이(가) @{card5_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card5_bottom" value="/em @{character_name}이(가) @{card5_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card5_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card5_toggle" id="card5_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card5_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card5_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 6 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card6_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card6_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card6_top" value="/em @{character_name}이(가) @{card6_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card6_bottom" value="/em @{character_name}이(가) @{card6_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card6_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card6_toggle" id="card6_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card6_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card6_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 7 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card7_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card7_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card7_top" value="/em @{character_name}이(가) @{card7_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card7_bottom" value="/em @{character_name}이(가) @{card7_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card7_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card7_toggle" id="card7_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card7_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card7_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 8 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card8_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card8_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card8_top" value="/em @{character_name}이(가) @{card8_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card8_bottom" value="/em @{character_name}이(가) @{card8_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card8_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card8_toggle" id="card8_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card8_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card8_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 9 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card9_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card9_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card9_top" value="/em @{character_name}이(가) @{card9_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card9_bottom" value="/em @{character_name}이(가) @{card9_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card9_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card9_toggle" id="card9_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card9_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card9_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-
-    <!-- 카드 10 -->
-    <div class="sheet-card">
-        <div class="sheet-card-header">
-            <input type="number" name="attr_card10_initial" class="sheet-card-initial" title="행동력" placeholder="행동력">
-            <input type="text" name="attr_card10_name" class="sheet-card-name" placeholder="카드명 입력">
-            <button type="roll" name="roll_card10_top" value="/em @{character_name}이(가) @{card10_name}의 상단 행동을 사용합니다.">상단</button>
-            <button type="roll" name="roll_card10_bottom" value="/em @{character_name}이(가) @{card10_name}의 하단 행동을 사용합니다.">하단</button>
-
-            <!-- 상세보기 토글 -->
-             <label for="card10_toggle" class="sheet-toggle-button">▼</label>
-        </div>
-        <input type="checkbox" name="attr_card10_toggle" id="card10_toggle" class="sheet-toggle-details">
-        <div class="sheet-card-details">
-            <h4>상단 행동</h4>
-            <textarea name="attr_card10_top_effect" placeholder="상단 행동 설명"></textarea>
-            <h4>하단 행동</h4>
-            <textarea name="attr_card10_bottom_effect" placeholder="하단 행동 설명"></textarea>
-        </div>
-    </div>
-</div>
-
-
-<!-- =================================================== -->
-<!--                    (임시)아이템 목록                    -->
-<!-- =================================================== -->
-<h2>보유 아이템</h2>
-<textarea name="attr_inventory" class="sheet-inventory" placeholder="보유 중인 아이템 목록을 기록합니다."></textarea>
-
 <!-- =================================================== -->
 <!--                 카드 자동 완성 스크립트                   -->
 <!-- =================================================== -->
@@ -804,4 +809,16 @@
             setAttrs(attrsToSet);
         });
     });
+	
+	// 포지션 체크
+	on("change:position",
+		function() {
+			getAttrs(["position"],
+				function(values) {
+					setAttrs({character_postion:values.position});
+				}
+			);
+		}
+	);
+	
 </script>
